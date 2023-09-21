@@ -7,3 +7,17 @@ body{
 p.Paragraph1{
   font-size: 24px;
 }
+div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  animation-name: example;
+  animation-duration: 10s;
+}
+            
+@keyframes example {
+  0%   {left:0px; top:0px;}
+  50%  {left:1000px; top:0px;}
+  100% {left:0px; top:0px;}
+}
