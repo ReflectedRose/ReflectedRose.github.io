@@ -7,6 +7,37 @@
             body{
                 background-color: rgb(83, 83, 254);
             }
+
+            #submarine{
+                position:absolute;
+                bottom: 0;
+                animation: moveSubmarine 10s linear infinite;
+                width: 100px;
+                height: auto;
+            }
+            @keyframes moveSubmarine {
+                0%{
+                    left: 0;
+                    transform: scaleX(1);
+                }
+                49.9%{
+                    left: 80%;
+                    transform: scaleX(1);
+                }
+                50%{
+                    left: 80%;
+                    transform: scaleX(-1);
+                }
+                99.9%{
+                    left: 0;
+                    transform: scaleX(-1);
+                }
+                100%{
+                    left: 0;
+                    transform: scaleX(1);
+                }
+                
+            }
         </style>
     </head>
     <body>
@@ -17,6 +48,7 @@
         <p>
             This was a game I made in a team for the brackey's gamejam 2023 
         </p>
+        <img src="marine.png" alt="Submarine" id="submarine">
         
         <div class="pagination">
             <a href ="index.html">1</a>
