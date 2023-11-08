@@ -1,0 +1,22 @@
+body {
+    font: 1em papyrus;
+    color: white;
+}
+.pagination a{
+  color: white;
+  float:left;
+  padding: 8px 16px;
+  text-decoration: :none;
+}
+.pagination a.active{
+  background-color: #4CAF50;
+  color: white;
+}
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    color: black;
+}
+
+p.Paragraph1{
+  font-size: 24px;
+}
