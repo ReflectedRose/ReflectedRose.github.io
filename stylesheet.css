@@ -17,3 +17,12 @@ body{
 p.Paragraph1{
   font-size: 24px;
 }
+.grid-container{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+  row-gap: 50px;
+}
+.grid-item{
+  padding: 20px;
+}
