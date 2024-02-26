@@ -29,7 +29,7 @@ p.Paragraph1{
 .sidenav{
   display: block;
   height: 100%;
-  width: 160px;
+  width: 0;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -37,14 +37,19 @@ p.Paragraph1{
   background-color: #800080;
   overflow: hidden;
   padding-top: 20px;
-
+  z-index: 2;
+  transition: 0.5s;
 }
+
 .sidenav a{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
   color: white;
   display: block;
+}
+.sidenav a.active{
+  background-color: #480148;
 }
 .modal{
   display: none;

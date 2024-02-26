@@ -10,6 +10,37 @@
         </style>
     </head>
     <body>
+        <div class="modal" id="modal"></div>
+        <div id="sidebar" class="sidenav">
+            <a href="index.html">Home</a>
+            <a href="games.html">Games</a>
+            <a href="htmlProjects.html">html projects</a>
+            <a class="active" href="Art.html">art gallery</a>
+        </div>
+        <img id="menu" src="menu.png" alt="menu icon" style="width: 50px;height: 50px;">
+        <script>
+            var menu = document.getElementById("menu");
+            var sidebar = document.getElementById("sidebar");
+            var modal = document.getElementById("modal");
+            menu.addEventListener("click", function(){
+                modal.style.display="block";
+                openNav();
+            })
+            window.onclick = function(event){
+                if(event.target == modal){
+                    modal.style.display = "none";
+                    closeNav();
+                }
+            }
+            function openNav(){
+                document.getElementById("sidebar").style.width = "250px";
+            }
+            function closeNav(){
+                document.getElementById("sidebar").style.width = "0";
+            }
+
+
+        </script>
         <h1>
             Art gallery!!!
         </h1>
@@ -27,13 +58,6 @@
         <img src="person walking 2 (attempt2).gif" alt = "Person" style="width:20%;height:20%;">
         <img src="Person(Clothes).gif" alt = "Clothes" style="width:20%;height:20%;">
         
-        <div class="pagination">
-            <a href ="index.html">1</a>
-            <a href ="page2.html">2</a>
-            <a href ="page3.html">3</a>
-            <a href ="page4.html">4</a>
-            <a class = "active" href ="Art.html">Art gallery</a>
-            <a href ="htmlProjects.html">html projects</a>
-        </div>
+
     </body>
 </html>
