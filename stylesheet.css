@@ -48,7 +48,7 @@ p.Paragraph1{
   color: white;
   display: block;
 }
-.sidenav a.active{
+.sidenav a:hover{
   background-color: #480148;
 }
 .modal{
