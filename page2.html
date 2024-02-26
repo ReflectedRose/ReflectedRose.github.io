@@ -4,9 +4,7 @@
         <link href = "stylesheet.css" rel = "stylesheet">
         <title>DeepDiveDash</title>
         <style>
-            body{
-                background-color: rgb(83, 83, 254);
-            }
+
 
             #submarine{
                 position:absolute;
@@ -41,22 +39,39 @@
         </style>
     </head>
     <body>
+        <div class="modal" id="modal">
+            <div id="sidebar" class="sidenav">
+                <a href="index.html">Home</a>
+                <a href="games.html">Games</a>
+                <a href="htmlProjects.html">html projects</a>
+            </div>
+        </div>
+
+        <img id="menu" src="menu.png" alt="menu icon" style="width: 50px;height: 50px;">
+        <script>
+            var menu = document.getElementById("menu");
+            var sidebar = document.getElementById("sidebar");
+            var modal = document.getElementById("modal");
+            menu.addEventListener("click", function(){
+                modal.style.display="block";
+            })
+            window.onclick = function(event){
+                if(event.target == modal){
+                    modal.style.display = "none";
+                }
+            }
+
+        </script>
+
         <h1>
             Deep dive dash
         </h1>
-        <iframe frameborder="0" src="https://itch.io/embed/2236051?bg_color=35bbd7&amp;fg_color=010512&amp;link_color=0c70f5&amp;border_color=323747" width="552" height="167"><a href="https://nadzw.itch.io/deep-dive-dash">Deep Dive Dash by Nadeem Wali, Krenich, harryshewring</a></iframe>
+        <iframe frameborder="0" src="https://itch.io/embed/2236051?bg_color=35bbd7&amp;fg_color=010512&amp;link_color=0c70f5&amp;border_color=323747" width="552" height="167"><a href="https://nadzw.itch.io/deep-dive-dash">Deep Dive Dash by Nadeem Wali, Krenich, ellieshewring</a></iframe>
         <p>
             This was a game I made in a team for the brackey's gamejam 2023 
         </p>
         <img src="marine.png" alt="Submarine" id="submarine">
         
-        <div class="pagination">
-            <a href ="index.html">1</a>
-            <a class="active" href ="page2.html">2</a>
-            <a href ="page3.html">3</a>
-            <a href ="page4.html">4</a>
-            <a href ="Art.html">Art gallery</a>
-            <a href ="htmlProjects.html">html projects</a>
-        </div>
+
     </body>
 </html>

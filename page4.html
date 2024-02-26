@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href = "stylesheet.css" rel = "stylesheet">
         <title>SpaceTriangles</title>
-        <style>
-            body{
-                background-color: rgb(0, 0, 0);
-                font: 1em papyrus;
-                color: white;
-            }
-            .pagination a{
-                color: white;
-                float:left;
-                padding: 8px 16px;
-            }
-            .pagination a.active{
-               background-color: #4CAF50;
-               color: white;
-            }
-            .pagination a:hover:not(.active) {
-               background-color: #ddd;
-               color: black;
-            }
-            p.Paragraph1{
-              font-size: 24px;
-            }
-            
-            
-        </style>
         
     </head>
     <body>
+        <div class="modal" id="modal">
+            <div id="sidebar" class="sidenav">
+                <a href="index.html">Home</a>
+                <a href="games.html">Games</a>
+                <a href="htmlProjects.html">html projects</a>
+            </div>
+        </div>
+
+        <img id="menu" src="menu.png" alt="menu icon" style="width: 50px;height: 50px;">
+        <script>
+            var menu = document.getElementById("menu");
+            var sidebar = document.getElementById("sidebar");
+            var modal = document.getElementById("modal");
+            menu.addEventListener("click", function(){
+                modal.style.display="block";
+            })
+            window.onclick = function(event){
+                if(event.target == modal){
+                    modal.style.display = "none";
+                }
+            }
+
+        </script>
+
         <h1>
             Space triangles
         </h1>
@@ -39,14 +39,6 @@
         </p>
 
 
-        
-        <div class="pagination">
-            <a href ="index.html">1</a>
-            <a href ="page2.html">2</a>
-            <a href ="page3.html">3</a>
-            <a class="active" href ="page4.html">4</a>
-            <a href ="Art.html">Art gallery</a>
-            <a href ="htmlProjects.html">html projects</a>
-        </div>
+
     </body>
 </html>

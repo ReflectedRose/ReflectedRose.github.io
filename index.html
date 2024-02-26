@@ -1,40 +1,69 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <link href = "stylesheet.css" rel = "stylesheet">
         <title>Website homepage</title>
-        <style>
-            body{
-                background-color: rgb(220, 165, 250);
-            }
-        </style>
+
     </head>
     <body>
-        <h1>
-            Website
-        </h1>
-        <p class="Paragraph1">
-            Welcome to my website a place in which I shall put up my games and things
-        </p>
-        <h2>
-            About me
-        </h2>
-        <p>
-            Hi I am Ellie and I am a game developer.<br>
-            I am 17, my pronouns are she/her and my favourite color is <br>
-            purple. I made 3 games so far: Deep-Dive-Dash a game about <br>
-            getting as deep as possible in an ocean, a roguelike in <br>
-            which you have to make it through a castle and an arcade <br>
-            game where you have to survive in space for as long as possible.
-        </p>
-        
-        <div class="pagination">
-            <a class="active" href ="index.html">1</a>
-            <a href ="page2.html">2</a>
-            <a href ="page3.html">3</a>
-            <a href ="page4.html">4</a>
-            <a href ="Art.html">Art gallery</a>
-            <a href ="htmlProjects.html">html projects</a>
+
+
+        <div class="modal" id="modal">
+            <div id="sidebar" class="sidenav">
+                <a href="index.html">Home</a>
+                <a href="games.html">Games</a>
+                <a href="htmlProjects.html">html projects</a>
+            </div>
         </div>
+
+        <img id="menu" src="menu.png" alt="menu icon" style="width: 50px;height: 50px;">
+        <script>
+            var menu = document.getElementById("menu");
+            var sidebar = document.getElementById("sidebar");
+            var modal = document.getElementById("modal");
+            menu.addEventListener("click", function(){
+                modal.style.display="block";
+            })
+            window.onclick = function(event){
+                if(event.target == modal){
+                    modal.style.display = "none";
+                }
+            }
+
+        </script>
+
+
+
+        <div class="main">
+            <h1>
+                Website
+            </h1>
+            <p class="Paragraph1">
+                Welcome to my website a place in which I shall put up my games and things
+            </p>
+            <h2>
+                About me
+            </h2>
+            <p>
+                Hi I am Ellie and I am a game developer.<br>
+                I am 17, my pronouns are she/her and my favourite color is <br>
+                purple. I made 3 games so far: Deep-Dive-Dash a game about <br>
+                getting as deep as possible in an ocean, a roguelike in <br>
+                which you have to make it through a castle and an arcade <br>
+                game where you have to survive in space for as long as possible.
+            </p>
+            
+            <div class="pagination">
+                <a class="active" href ="index.html">1</a>
+                <a href ="page2.html">2</a>
+                <a href ="page3.html">3</a>
+                <a href ="page4.html">4</a>
+                <a href ="Art.html">Art gallery</a>
+                <a href ="htmlProjects.html">html projects</a>
+            </div>
+        </div>
+
+
     </body>
 </html>
