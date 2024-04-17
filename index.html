@@ -74,7 +74,10 @@
             Render = Matter.Render,
             Runner = Matter.Runner,
             Bodies = Matter.Bodies,
-            Composite = Matter.Composite;
+            Composite = Matter.Composite,
+            MouseConstraint = Matter.MouseConstraint,
+            Mouse = Matter.Mouse,
+            Events = Matter.Events;
         // create an engine
         var engine = Engine.create();
 
@@ -90,7 +93,64 @@
             }
         });
 
+        function Setup() {
+
+
+            var Follow = Bodies.circle(500, 250, 30, {
+                render: {
+                    fillStyle: 'transparent'
+                },
+                isStatic: true
+            });
+
+            var ground = Bodies.rectangle(400, 610, 810, 60, {
+                isStatic: true
+            });
+
+            // add mouse control
+            let mouse = Mouse.create(render.canvas),
+                mouseConstraint = MouseConstraint.create(engine, {
+                    mouse: mouse,
+                    constraint: {
+                        stiffness: 0.2,
+                        render: {
+                            visible: false
+                        }
+                    }
+                });
+
+
+
+            Composite.add(engine.world, mouseConstraint);
+
+            // keep the mouse in sync with rendering
+            render.mouse = mouse;
+            Composite.add(engine.world, [ground, Follow]);
+
+
+            // run the renderer
+
+            Render.run(render);
+
+            // create runner
+
+            var runner = Runner.create();
+
+            // run the engine
+
+            Runner.run(runner, engine);
+            setInterval(createParticles, 200);
+            document.addEventListener("mousemove", function (event) {
+                // Update the position of the center rectangle to follow the mouse pointer
+                Matter.Body.setPosition(Follow, {
+                    x: event.clientX/1.85,
+                    y: event.clientY/1.23
+                });
+            });
+        }
+
         // create two boxes and a ground
+
 
         function createParticles() {
             var circles = [];
@@ -110,28 +170,10 @@
             Composite.add(engine.world, circles);
         }
 
-        var ground = Bodies.rectangle(400, 610, 810, 60, {
-            isStatic: true
-        });
-
-        // add all of the bodies to the world
 
 
-        Composite.add(engine.world, [ground]);
 
-
-        // run the renderer
-
-        Render.run(render);
-
-        // create runner
-
-        var runner = Runner.create();
-
-        // run the engine
-
-        Runner.run(runner, engine);
-        setInterval(createParticles, 200);
+        Setup();
     </script>
     <div class="content">
         <h1>
