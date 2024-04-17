@@ -7,6 +7,9 @@ body {
   float:left;
   padding: 8px 16px;
 }
+.content{
+    z-index: 2;
+}
 .pagination a.active{
   background-color: #4CAF50;
   color: white;

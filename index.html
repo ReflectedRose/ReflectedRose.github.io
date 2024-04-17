@@ -1,69 +1,161 @@
 <!DOCTYPE html>
 <html>
-    <head>
 
-        <link href = "stylesheet.css" rel = "stylesheet">
-        <title>Website homepage</title>
+<head>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
 
-    </head>
-    <body>
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            /* Set z-index to position the canvas behind other elements */
 
-        <div class="modal" id="modal"></div>
-        <div id="sidebar" class="sidenav">
-            <a href="index.html">Home</a>
-            <a href="games.html">Games</a>
-            <a href="htmlProjects.html">html projects</a>
-            <a href="Art.html">art gallery</a>
-        </div>
-        <img id="menu" src="menu.png" alt="menu icon" style="width: 50px;height: 50px;">
-        <script>
-            var menu = document.getElementById("menu");
-            var sidebar = document.getElementById("sidebar");
-            var modal = document.getElementById("modal");
-            menu.addEventListener("click", function(){
-                modal.style.display="block";
-                openNav();
-            })
-            window.onclick = function(event){
-                if(event.target == modal){
-                    modal.style.display = "none";
-                    closeNav();
-                }
+        }
+    </style>
+    <link href="stylesheet.css" rel="stylesheet">
+    <title>Website homepage</title>
+
+</head>
+
+<body>
+    <div id="particles-js"></div>
+
+    <script src="particles.js"></script>
+    <div class="modal" id="modal"></div>
+    <div id="sidebar" class="sidenav">
+        <a href="index.html">Home</a>
+        <a href="games.html">Games</a>
+        <a href="htmlProjects.html">html projects</a>
+        <a href="Art.html">art gallery</a>
+    </div>
+    <img id="menu" src="menu.png" alt="menu icon" style="width: 50px;height: 50px;">
+    <script>
+        var menu = document.getElementById("menu");
+        var sidebar = document.getElementById("sidebar");
+        var modal = document.getElementById("modal");
+        menu.addEventListener("click", function () {
+            modal.style.display = "block";
+            openNav();
+        })
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                closeNav();
             }
-            function openNav(){
-                document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function openNav() {
+            document.getElementById("sidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sidebar").style.width = "0";
+        }
+    </script>
+
+
+
+    <script src="matter.js"></script>
+    <script>
+        function getRandomArbitrary(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+        // module aliases
+        var Engine = Matter.Engine,
+            Render = Matter.Render,
+            Runner = Matter.Runner,
+            Bodies = Matter.Bodies,
+            Composite = Matter.Composite;
+        // create an engine
+        var engine = Engine.create();
+
+        // create a renderer
+        var render = Render.create({
+            element: document.body,
+            engine: engine,
+
+            options: {
+
+                wireframes: false,
+                background: 'rgb(147, 112, 219)' // or '#ff0000' or other valid color string
             }
-            function closeNav(){
-                document.getElementById("sidebar").style.width = "0";
+        });
+
+        // create two boxes and a ground
+
+        function createParticles() {
+            var circles = [];
+
+            for (var i = 0; i < 50; i++) {
+                var circleA = Bodies.rectangle(getRandomArbitrary(0, 800), getRandomArbitrary(-200, 0), 4, 4, {
+                    render: {
+                        fillStyle: 'blue'
+                    }
+                });
+                circles.push(circleA);
+                // Schedule the removal of the circle after 5 seconds
+                setTimeout(function (circle) {
+                    Composite.remove(engine.world, circle);
+                }, 3000, circleA);
             }
+            Composite.add(engine.world, circles);
+        }
+
+        var ground = Bodies.rectangle(400, 610, 810, 60, {
+            isStatic: true
+        });
+
+        // add all of the bodies to the world
 
 
-        </script>
+        Composite.add(engine.world, [ground]);
 
 
+        // run the renderer
 
-        <div class="main">
-            <h1>
-                Website
-            </h1>
-            <p class="Paragraph1">
-                Welcome to my website a place in which I shall put up my games and things
-            </p>
-            <h2>
-                About me
-            </h2>
-            <p>
-                Hi I am Ellie and I am a game developer.<br>
-                I am 17, my pronouns are she/her and my favourite color is <br>
-                purple. I made 3 games so far: Deep-Dive-Dash a game about <br>
-                getting as deep as possible in an ocean, a roguelike in <br>
-                which you have to make it through a castle and an arcade <br>
-                game where you have to survive in space for as long as possible.
-            </p>
-            
+        Render.run(render);
 
-        </div>
+        // create runner
+
+        var runner = Runner.create();
+
+        // run the engine
+
+        Runner.run(runner, engine);
+        setInterval(createParticles, 200);
+    </script>
+    <div class="content">
+        <h1>
+            Website
+        </h1>
+        <p class="Paragraph1">
+            Welcome to my website a place in which I shall put up my games and things
+        </p>
+        <h2>
+            About me
+        </h2>
+        <p>
+            Hi I am Ellie and I am a game developer in Bristol.<br>
+            I am 17, my pronouns are she/her and my favourite color is <br>
+            purple. I made 3 games so far: Deep-Dive-Dash a game about <br>
+            getting as deep as possible in an ocean, a roguelike in <br>
+            which you have to make it through a castle and an arcade <br>
+            game where you have to survive in space for as long as possible.
+        </p>
 
 
-    </body>
+    </div>
+
+
+</body>
+
 </html>
