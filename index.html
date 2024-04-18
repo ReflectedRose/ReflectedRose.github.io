@@ -95,7 +95,8 @@
 
         function Setup() {
 
-
+            engine.world.gravity.y = 0.3;
+            engine.world.gravity.x = 0.1;
             var Follow = Bodies.circle(500, 250, 30, {
                 render: {
                     fillStyle: 'transparent'
@@ -155,10 +156,10 @@
         function createParticles() {
             var circles = [];
 
-            for (var i = 0; i < 100; i++) {
-                var circleA = Bodies.rectangle(getRandomArbitrary(0, 800), getRandomArbitrary(-200, 0), 4, 4, {
+            for (var i = 0; i < 125; i++) {
+                var circleA = Bodies.rectangle(getRandomArbitrary(-200, 1000), getRandomArbitrary(-200, 0), 4, 4, {
                     render: {
-                        fillStyle: 'blue'
+                        fillStyle: 'white'
                     }
                 });
                 circles.push(circleA);
