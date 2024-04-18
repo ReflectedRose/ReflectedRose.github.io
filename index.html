@@ -104,9 +104,7 @@
                 isStatic: true
             });
 
-            var ground = Bodies.rectangle(400, 610, 810, 60, {
-                isStatic: true
-            });
+
 
             // add mouse control
             let mouse = Mouse.create(render.canvas),
@@ -126,7 +124,7 @@
 
             // keep the mouse in sync with rendering
             render.mouse = mouse;
-            Composite.add(engine.world, [ground, Follow]);
+            Composite.add(engine.world, [Follow]);
 
 
             // run the renderer
