@@ -2,189 +2,49 @@
 <html>
 
 <head>
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            /* Set z-index to position the canvas behind other elements */
-
-        }
-    </style>
-    <link href="stylesheet.css" rel="stylesheet">
-    <title>Website homepage</title>
+    <link href="desktopStylesheet.css" rel="stylesheet">
+    <title>Desktop</title>
 
 </head>
 
 <body>
-    <div id="particles-js"></div>
+    <div class="grid-container">
+        <div class="grid-item" style="grid-column: 1; grid-row: 1;">
+            <img id="aboutMe" src="folderIcon.png" alt="about me" style="width:60px; height:48px;"><br>
+            <h2>About me</h2>
+        </div>
+        <div class="grid-item" style="grid-column: 1; grid-row: 2;">
+            <img id="gamesFolder" src="folderIcon.png" alt="games" style="width:60px; height:48px;"><br>
+            <h2>Games</h2>
+        </div>
+        <div class="grid-item" style="grid-column: 2; grid-row: 1;">
+            <img id="htmlFolder" src="folderIcon.png" alt="projects" style="width:60px; height:48px;"><br>
+            <h2>html projects</h2>
+        </div>
+        <div class="grid-item" style="grid-column: 1; grid-row: 3;">
+            <img id="artFolder" src="folderIcon.png" alt="art" style="width:60px; height:48px;"><br>
+            <h2>Art folder</h2>
+        </div>
 
-    <script src="particles.js"></script>
-    <div class="modal" id="modal"></div>
-    <div id="sidebar" class="sidenav">
-        <a href="index.html">Home</a>
-        <a href="games.html">Games</a>
-        <a href="htmlProjects.html">html projects</a>
-        <a href="Art.html">art gallery</a>
+
     </div>
-    <img id="menu" src="menu.png" alt="menu icon" style="width: 50px;height: 50px;">
-    <script>
-        var menu = document.getElementById("menu");
-        var sidebar = document.getElementById("sidebar");
-        var modal = document.getElementById("modal");
-        menu.addEventListener("click", function () {
-            modal.style.display = "block";
-            openNav();
-        })
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-                closeNav();
-            }
-        }
+    <div id="Games" class="dragBox">
+        <div class="dragHeader">Games</div>
+        <a href="https://nadzw.itch.io/deep-dive-dash">Deep-Dive-Dash</a><br>
+        <a href="https://irateburritos.itch.io/a-momentous-occasion">A momentous occasion</a><br>
+        <a href="https://reflectedrose.itch.io/space-triangle">Space triangles</a>
 
-        function openNav() {
-            document.getElementById("sidebar").style.width = "250px";
-        }
-
-        function closeNav() {
-            document.getElementById("sidebar").style.width = "0";
-        }
-    </script>
+    </div>
+    <div id="htmlProjects" class="dragBox">
+        <div class="dragHeader">html projects</div>
+        <a href="https://reflectedrose.github.io/reCAPTCHA-parody/">reCAPTCHA parody</a><br>
+        <a href="https://reflectedrose.github.io/music-maker/">Music maker</a><br>
 
 
-
-    <script src="matter.js"></script>
-    <script>
-        function getRandomArbitrary(min, max) {
-            return Math.random() * (max - min) + min;
-        }
-        // module aliases
-        var Engine = Matter.Engine,
-            Render = Matter.Render,
-            Runner = Matter.Runner,
-            Bodies = Matter.Bodies,
-            Composite = Matter.Composite,
-            MouseConstraint = Matter.MouseConstraint,
-            Mouse = Matter.Mouse,
-            Events = Matter.Events;
-        // create an engine
-        var engine = Engine.create();
-
-        // create a renderer
-        var render = Render.create({
-            element: document.body,
-            engine: engine,
-
-            options: {
-
-                wireframes: false,
-                background: 'rgb(147, 112, 219)' // or '#ff0000' or other valid color string
-            }
-        });
-
-        function Setup() {
-
-            engine.world.gravity.y = 0.3;
-            engine.world.gravity.x = 0.1;
-            var Follow = Bodies.circle(500, 250, 30, {
-                render: {
-                    fillStyle: 'transparent'
-                },
-                isStatic: true
-            });
-
-
-
-            // add mouse control
-            let mouse = Mouse.create(render.canvas),
-                mouseConstraint = MouseConstraint.create(engine, {
-                    mouse: mouse,
-                    constraint: {
-                        stiffness: 0.2,
-                        render: {
-                            visible: false
-                        }
-                    }
-                });
-
-
-
-            Composite.add(engine.world, mouseConstraint);
-
-            // keep the mouse in sync with rendering
-            render.mouse = mouse;
-            Composite.add(engine.world, [Follow]);
-
-
-            // run the renderer
-
-            Render.run(render);
-
-            // create runner
-
-            var runner = Runner.create();
-
-            // run the engine
-
-            Runner.run(runner, engine);
-            setInterval(createParticles, 200);
-            document.addEventListener("mousemove", function (event) {
-                // Update the position of the center rectangle to follow the mouse pointer
-                Matter.Body.setPosition(Follow, {
-                    x: event.clientX/1.85,
-                    y: event.clientY/1.23
-                });
-            });
-        }
-
-        // create two boxes and a ground
-
-
-        function createParticles() {
-            var circles = [];
-
-            for (var i = 0; i < 125; i++) {
-                var circleA = Bodies.rectangle(getRandomArbitrary(-200, 1000), getRandomArbitrary(-200, 0), 4, 4, {
-                    render: {
-                        fillStyle: 'white'
-                    }
-                });
-                circles.push(circleA);
-                // Schedule the removal of the circle after 5 seconds
-                setTimeout(function (circle) {
-                    Composite.remove(engine.world, circle);
-                }, 3000, circleA);
-            }
-            Composite.add(engine.world, circles);
-        }
-
-
-
-
-        Setup();
-    </script>
-    <div class="content">
-        <h1>
-            Website
-        </h1>
-        <p class="Paragraph1">
-            Welcome to my website a place in which I shall put up my games and things
-        </p>
-        <h2>
-            About me
-        </h2>
-        <p>
+    </div>
+    <div id="about" class="dragBox">
+        <div class="dragHeader">About me</div>
+        <p style="font: 1em papyrus;">
             Hi I am Ellie and I am a game developer in Bristol.<br>
             I am 17, my pronouns are she/her and my favourite color is <br>
             purple. I have made 3 games so far: Deep-Dive-Dash a game about <br>
@@ -195,7 +55,116 @@
 
 
     </div>
+    <div id="artWindow" class="dragBox">
+        <div class="dragHeader">Art</div>
+        <div class="scrollable">
+            <h2>
+                This is a collection of art of both my own characters and art I've made from shows I've watched
+            </h2>
+            <img src="Mountains.png" alt="Mountains" style="width:200px; height: 200px;">
+            <img src="me.png" alt="Me" style="width:200px; height: 200px;">
+            <img src="VRZombie.png" alt="ZombieVR" style="width:200px; height: 200px;">
+            <img src="Alastor.png" alt="Alastor" style="width:200px; height: 200px;">
+            <img src="Purple hair.png" alt="PurpleHair" style="width:200px; height: 200px;">
+            <img src="Red Guy.png" alt="Red guy" style="width:200px; height: 200px;">
+            <img src="Clockwork1.png" alt="Clockwork" style="width:200px; height: 200px;">
 
+            <img src="AroMountain.png" alt="Aro" style="width:200px; height: 200px;">
+            <img src="Purple sky.png" alt="Sky" style="width:200px; height: 200px;">
+
+            <img src="person walking 2 (attempt2).gif" alt="Person" style="width:200px; height: 200px;">
+            <img src="Person(Clothes).gif" alt="Clothes" style="width:200px; height: 200px;">
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+        var layer = 4;
+        document.getElementById("gamesFolder").addEventListener("click", openGamesFolder);
+
+        function openGamesFolder() {
+            document.getElementById("Games").style.zIndex = layer;
+            layer += 1
+            document.getElementById("Games").style.display = "block";
+        }
+
+        document.getElementById("htmlFolder").addEventListener("click", openhtmlFolder);
+
+        function openhtmlFolder() {
+            document.getElementById("htmlProjects").style.zIndex = layer;
+            layer += 1
+            document.getElementById("htmlProjects").style.display = "block";
+        }
+
+        document.getElementById("aboutMe").addEventListener("click", openAboutFolder);
+
+        function openAboutFolder() {
+            document.getElementById("about").style.zIndex = layer;
+            layer += 1
+            document.getElementById("about").style.display = "block";
+        }
+
+        document.getElementById("artFolder").addEventListener("click", openAboutFolder);
+
+        function openAboutFolder() {
+            document.getElementById("artWindow").style.zIndex = layer;
+            layer += 1
+            document.getElementById("artWindow").style.display = "block";
+        }
+
+        var Draggables = document.querySelectorAll(".dragBox");
+        Draggables.forEach(function (item) {
+            dragElement(item);
+        });
+
+
+        function dragElement(elmnt) {
+            var pos1 = 0,
+                pos2 = 0,
+                pos3 = 0,
+                pos4 = 0;
+            if (document.getElementById(elmnt.id + "header")) {
+                /* if present, the header is where you move the DIV from:*/
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            } else {
+                /* otherwise, move the DIV from anywhere inside the DIV:*/
+                elmnt.onmousedown = dragMouseDown;
+            }
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+    </script>
 
 </body>
 
