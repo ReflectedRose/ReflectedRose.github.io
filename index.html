@@ -29,21 +29,21 @@
 
     </div>
     <div id="Games" class="dragBox">
-        <div class="dragHeader">Games</div>
+        <div class="dragHeader">Games<span class="closeButton" onclick="closeWindow('Games')">x</span></div>
         <a href="https://nadzw.itch.io/deep-dive-dash">Deep-Dive-Dash</a><br>
         <a href="https://irateburritos.itch.io/a-momentous-occasion">A momentous occasion</a><br>
         <a href="https://reflectedrose.itch.io/space-triangle">Space triangles</a>
-
     </div>
+    
     <div id="htmlProjects" class="dragBox">
-        <div class="dragHeader">html projects</div>
+        <div class="dragHeader">html projects<span class="closeButton" onclick="closeWindow('htmlProjects')">x</span></div>
         <a href="https://reflectedrose.github.io/reCAPTCHA-parody/">reCAPTCHA parody</a><br>
         <a href="https://reflectedrose.github.io/music-maker/">Music maker</a><br>
 
 
     </div>
     <div id="about" class="dragBox">
-        <div class="dragHeader">About me</div>
+        <div class="dragHeader">About me<span class="closeButton" onclick="closeWindow('about')">x</span></div>
         <p style="font: 1em papyrus;">
             Hi I am Ellie and I am a game developer in Bristol.<br>
             I am 17, my pronouns are she/her and my favourite color is <br>
@@ -56,7 +56,7 @@
 
     </div>
     <div id="artWindow" class="dragBox">
-        <div class="dragHeader">Art</div>
+        <div class="dragHeader">Art<span class="closeButton" onclick="closeWindow('artWindow')">x</span></div>
         <div class="scrollable">
             <h2>
                 This is a collection of art of both my own characters and art I've made from shows I've watched
@@ -84,35 +84,58 @@
     <script>
         var layer = 4;
         document.getElementById("gamesFolder").addEventListener("click", openGamesFolder);
-
+        function closeWindow(name){
+            var window = document.getElementById(name)
+            window.style.display = "none";
+        }
         function openGamesFolder() {
-            document.getElementById("Games").style.zIndex = layer;
+            var window = document.getElementById("Games")
+            window.style.zIndex = layer;
             layer += 1
-            document.getElementById("Games").style.display = "block";
+            if (window.style.display != "block") {
+                window.style.left = Math.random() * 90 + '%';
+                window.style.top = Math.random() * 85 + '%';
+            }
+            window.style.display = "block";
         }
 
         document.getElementById("htmlFolder").addEventListener("click", openhtmlFolder);
 
         function openhtmlFolder() {
-            document.getElementById("htmlProjects").style.zIndex = layer;
+            var window = document.getElementById("htmlProjects")
+            window.style.zIndex = layer;
             layer += 1
-            document.getElementById("htmlProjects").style.display = "block";
+            if (window.style.display != "block") {
+                window.style.left = Math.random() * 90 + '%';
+                window.style.top = Math.random() * 90 + '%';
+            }
+            window.style.display = "block";
         }
 
         document.getElementById("aboutMe").addEventListener("click", openAboutFolder);
 
         function openAboutFolder() {
-            document.getElementById("about").style.zIndex = layer;
+            var window = document.getElementById("about")
+            window.style.zIndex = layer;
             layer += 1
-            document.getElementById("about").style.display = "block";
+            if (window.style.display != "block") {
+                window.style.left = Math.random() * 69 + '%';
+                window.style.top = Math.random() * 69 + '%';
+            }
+            window.style.display = "block";
         }
 
         document.getElementById("artFolder").addEventListener("click", openArtFolder);
 
         function openArtFolder() {
-            document.getElementById("artWindow").style.zIndex = layer;
+            var window = document.getElementById("artWindow")
+            window.style.zIndex = layer;
             layer += 1
-            document.getElementById("artWindow").style.display = "block";
+            if (window.style.display != "block") {
+                window.style.left = Math.random() * 30 + '%';
+                window.style.top = Math.random() * 20 + '%';
+            }
+            window.style.display = "block";
         }
 
         var Draggables = document.querySelectorAll(".dragBox");
