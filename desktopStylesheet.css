@@ -1,8 +1,35 @@
 body {
-  background-color: #4e8abe;
+  background-color: #000000;
   overflow: hidden;
 }
 
+.startup h1{
+  font-size: 10vw;
+  padding-right: 100px;
+  font-family:"Brush Script MT";
+  font-weight: lighter;
+}
+
+.startup h2{
+  font-size: 10vw;
+  padding-left: 100px;
+  font-family:"Brush Script MT";
+  font-weight: lighter;
+}
+
+.startup h3{
+  font-size: 3vw;
+
+}
+
+.startup{
+  color: white;
+  line-height: 0.25;
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+}
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto;
@@ -10,9 +37,17 @@ body {
   row-gap: 50px;
 }
 
-.grid-item h2 {
+.desktop_icon h2 {
   margin-left: 10px;
   margin-top: 0px;
+}
+
+.p{
+  font: 1em papyrus;
+}
+
+.desktop{
+  display: none;
 }
 
 .dragBox {
