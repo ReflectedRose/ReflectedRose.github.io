@@ -7,14 +7,15 @@
 
 </head>
 
-<body onload="startup()">
-    <div id="startup" class="startup">
+<!--<body onload="startup()">-->
+<body>
+    <!--<div id="startup" class="startup">
         <h1>Ellie's</h1>
         <h2>Website</h2>
         <h3 id="loading">Starting</h3>
-         
-    </div>
-    <div id="desktop" style="display: none">
+
+    </div>-->
+    <div id="desktop">
         <div class="grid-container">
             <div class="desktop_icon" style="grid-column: 1; grid-row: 1;">
                 <img id="aboutMe" src="folderIcon.png" alt="about me" style="width:60px; height:48px;"><br>
@@ -24,14 +25,18 @@
                 <img id="gamesFolder" src="folderIcon.png" alt="games" style="width:60px; height:48px;"><br>
                 <h2>Games</h2>
             </div>
+            <div class="desktop_icon" style="grid-column: 1; grid-row: 3;">
+                <img id="artFolder" src="folderIcon.png" alt="art" style="width:60px; height:48px;"><br>
+                <h2>Art folder</h2>
+            </div>
             <div class="desktop_icon" style="grid-column: 2; grid-row: 1;">
                 <img id="htmlFolder" src="folderIcon.png" alt="projects" style="width:60px; height:48px;"><br>
                 <h2>html projects</h2>
             </div>
-            <div class="desktop_icon" style="grid-column: 1; grid-row: 3;">
-                <img id="artFolder" src="folderIcon.png" alt="art" style="width:60px; height:48px;"><br>
-                <h2>Art folder</h2>
-          </div>
+            <div class="desktop_icon" style="grid-column: 2; grid-row: 2;">
+                <img id="peenoFolder" src="folderIcon.png" alt="Peeno's Great Adventure" style="width:60px; height:48px;"><br>
+                <h2>Peenos's Great Adventure</h2>
+            </div>
 
 
         </div>
@@ -42,7 +47,7 @@
         <a href="https://irateburritos.itch.io/a-momentous-occasion">A momentous occasion</a><br>
         <a href="https://reflectedrose.itch.io/space-triangle">Space triangles</a>
     </div>
-    
+
     <div id="htmlProjects" class="dragBox">
         <div class="dragHeader">html projects<span class="closeButton" onclick="closeWindow('htmlProjects')">x</span></div>
         <a href="https://reflectedrose.github.io/reCAPTCHA-parody/">reCAPTCHA parody</a><br>
@@ -87,37 +92,52 @@
 
 
     </div>
+    <div id="PeenoWindow" class="dragBox">
+        <div class="dragHeader">Peeno's Great Adventure<span class="closeButton" onclick="closeWindow('PeenoWindow')">x</span></div>
+        <div class="scrollable">
+            <h1>
+                Peeno's Great Adventure
+            </h1>
+            <p>
+                Peeno's Great Adventure was a project I worked on in the end of 2024 and start of 2025.
+            </p>
 
+        </div>
+
+
+    </div>
 
 
     <script>
         var loadTimer;
-        function startup() {
-            loadTimer = window.setInterval(load, 700);
-            window.setTimeout(loadDesktop, 5600);
-        }
-        function load(){
-            var loading = document.getElementById("loading");
-            if (loading.innerHTML == "Starting..."){
-                loading.innerHTML = "Starting";
-            }
-            else{
-                loading.innerHTML = loading.innerHTML + ".";
-            }
+
+        //Code for startup screen - currently unused
+        //function startup() {
+        //    loadTimer = window.setInterval(load, 700);
+        //    window.setTimeout(loadDesktop, 5600);
+        //}
+        //function load(){
+        //    var loading = document.getElementById("loading");
+        //    if (loading.innerHTML == "Starting..."){
+        //        loading.innerHTML = "Starting";
+        //    }
+        //    else{
+        //        loading.innerHTML = loading.innerHTML + ".";
+        //    }
 
 
-        }
+        //}
 
-        function loadDesktop(){
-            document.body.style.background="#4e8abe";
-            window.clearInterval(loadTimer);
-            document.getElementById("startup").style.display = "none";
-            document.getElementById("desktop").style.display = "block";
-        }
+        //function loadDesktop(){
+        //    document.body.style.background="#4e8abe";
+        //    window.clearInterval(loadTimer);
+        //    document.getElementById("startup").style.display = "none";
+        //    document.getElementById("desktop").style.display = "block";
+        //}
 
         var layer = 4;
         document.getElementById("gamesFolder").addEventListener("click", openGamesFolder);
-        function closeWindow(name){
+        function closeWindow(name) {
             var window = document.getElementById(name)
             window.style.display = "none";
         }
@@ -171,59 +191,72 @@
             window.style.display = "block";
         }
 
+        document.getElementById("peenoFolder").addEventListener("click", openPeenoWindow);
+
+        function openPeenoWindow() {
+            var window = document.getElementById("PeenoWindow")
+            window.style.zIndex = layer;
+            layer += 1
+            if (window.style.display != "block") {
+                window.style.left = Math.random() * 30 + '%';
+                window.style.top = Math.random() * 20 + '%';
+            }
+            window.style.display = "block";
+        }
+
         var Draggables = document.querySelectorAll(".dragBox");
         Draggables.forEach(function (item) {
             dragElement(item);
         });
 
         function dragElement(elmnt) {
-    var pos1 = 0,
-        pos2 = 0,
-        pos3 = 0,
-        pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        /* if present, the header is where you move the DIV from:*/
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        /* otherwise, move the DIV from anywhere inside the DIV:*/
-        elmnt.onmousedown = dragMouseDown;
-    }
+            var pos1 = 0,
+                pos2 = 0,
+                pos3 = 0,
+                pos4 = 0;
+            if (document.getElementById(elmnt.id + "header")) {
+                /* if present, the header is where you move the DIV from:*/
+                document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+            } else {
+                /* otherwise, move the DIV from anywhere inside the DIV:*/
+                elmnt.onmousedown = dragMouseDown;
+            }
 
-    function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // get the mouse cursor position at startup:
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // call a function whenever the cursor moves:
+                document.onmousemove = elementDrag;
+            }
 
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        var newX = elmnt.offsetLeft - pos1;
-        var newY = elmnt.offsetTop - pos2;
-        // Constrain movement within the viewport bounds
-        newX = Math.max(0, Math.min(newX, window.innerWidth - elmnt.offsetWidth));
-        newY = Math.max(0, Math.min(newY, window.innerHeight - elmnt.offsetHeight));
-        elmnt.style.top = newY + "px";
-        elmnt.style.left = newX + "px";
-    }
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                // calculate the new cursor position:
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // set the element's new position:
+                var newX = elmnt.offsetLeft - pos1;
+                var newY = elmnt.offsetTop - pos2;
+                // Constrain movement within the viewport bounds
+                newX = Math.max(0, Math.min(newX, window.innerWidth - elmnt.offsetWidth));
+                newY = Math.max(0, Math.min(newY, window.innerHeight - elmnt.offsetHeight));
+                elmnt.style.top = newY + "px";
+                elmnt.style.left = newX + "px";
+            }
 
-    function closeDragElement() {
-        /* stop moving when mouse button is released:*/
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-}
+            function closeDragElement() {
+                /* stop moving when mouse button is released:*/
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
 
     </script>
 
