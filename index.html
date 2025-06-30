@@ -37,6 +37,10 @@
                 <img id="peenoFolder" src="folderIcon.png" alt="Peeno's Great Adventure" style="width:60px; height:48px;"><br>
                 <h2>Peenos's Great Adventure</h2>
             </div>
+            <div class="desktop_icon" style="grid-column: 1; grid-row: 4;">
+                <img id="internet" src="internetIcon.png" alt="internetIcon" style="width:60px; height:60px;"><br>
+                <h2>Internet</h2>
+            </div>
 
 
         </div>
@@ -59,12 +63,12 @@
         <div class="dragHeader">About me<span class="closeButton" onclick="closeWindow('about')">x</span></div>
         <p style="font: 1em papyrus;">
             Hi I am Ellie and I am a game developer in Bristol.<br>
-            My pronouns are she/her.
+            My pronouns are she/they.
             I have made 3 games so far: Deep-Dive-Dash a game about <br>
             getting as deep as possible in an ocean, a roguelike in <br>
             which you have to make it through a castle and an arcade <br>
             game where you have to survive in space for as long as possible.<br>
-            as well as this, I continue to work on html projects, such as<br>
+            As well as this, I continue to work on html projects, such as<br>
             this website.
         </p>
 
@@ -99,7 +103,10 @@
                 Peeno's Great Adventure
             </h1>
             <p>
-                Peeno's Great Adventure was a project I worked on in the end of 2024 and start of 2025.
+                Peeno's Great Adventure was a project I worked on as part of my Level 3 year 1 game development course in the end of 2024 and start of 2025. The task was to build a proof of concept for a new 3D platformer titled: Peeno's Great Adventure.
+            </p>
+            <p>
+                I decided to theme my project around the idea of time and seasons passing. To achieve this, I split the level into 4 sections. Spring, Summer, Autumn and Winter. Each season would have its own colour palette and scenery would change over the course of the year to show the passage of time. I decided to have one minigame per season. This would give the player enough time to experience each season and would set a good pace for the game and the different minigames would make it a fun and engaging game.
             </p>
 
         </div>
@@ -107,10 +114,32 @@
 
     </div>
 
+    <div id="InternetWindow" class="dragBox">
+        <div class="dragHeader">Internet<span class="closeButton" onclick="closeWindow('InternetWindow')">x</span></div>
+        <div class="scrollable">
+           <div id="internetHomepage">
+                <h1> The Internet</h1>
+                <div class = small-grid-container>
+                 <div style="grid-column: 1; grid-row: 1;">
+                        <img id="reflectedroseInternetPageIcon" src="internetIcon.png" alt="Test1" style="width:60px; height:60px;"><br>
+                        <h2>reflectedrose's website</h2>
+                    </div>
+              </div>
 
-    <script>
-        var loadTimer;
+            </div>
+            <div id="reflectedroseInternetPage" style="display: none;">
+                <embed src= "https://reflectedrose.github.io/" style="width: 1000px; height: 500px;">
+            </div>
+        </div>
+        </div>
 
+
+    </div>
+
+
+    <script> 
+        
+        //var loadTimer;
         //Code for startup screen - currently unused
         //function startup() {
         //    loadTimer = window.setInterval(load, 700);
@@ -202,6 +231,26 @@
                 window.style.top = Math.random() * 20 + '%';
             }
             window.style.display = "block";
+        }
+
+        document.getElementById("internet").addEventListener("click", openInternetWindow);
+
+        function openInternetWindow() {
+            var window = document.getElementById("InternetWindow")
+            window.style.zIndex = layer;
+            layer += 1
+            if (window.style.display != "block") {
+                window.style.left = Math.random() * 30 + '%';
+                window.style.top = Math.random() * 20 + '%';
+            }
+            window.style.display = "block";
+        }
+
+        document.getElementById("reflectedroseInternetPageIcon").addEventListener("click", switchToReflectedroseInternetPage);
+
+        function switchToReflectedroseInternetPage() {
+            document.getElementById("internetHomepage").style="display: none;";
+            document.getElementById("reflectedroseInternetPage").style="display: block;";
         }
 
         var Draggables = document.querySelectorAll(".dragBox");

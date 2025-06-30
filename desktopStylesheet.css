@@ -37,6 +37,14 @@ body {
   row-gap: 50px;
 }
 
+.small-grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+  row-gap: 50px;
+  text-align: center;
+}
+
 .desktop_icon h2 {
   margin-left: 10px;
   margin-top: 0px;
@@ -70,8 +78,6 @@ body {
 }
 
 div.scrollable {
-
-
   width: 1000px;
   height: 500px;
   overflow-x: hidden;
